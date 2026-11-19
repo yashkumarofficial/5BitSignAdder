@@ -1,6 +1,6 @@
 # 5-Bit Signed Ripple-Carry Adder (Verilog)
 
-A gate-level Verilog implementation of a **5-bit signed adder** (`SignAdder5bit`). The circuit accepts two 5-bit magnitude inputs along with separate sign bits, converts them into two's complement representation using combinational logic, and computes their sum via a 5-stage ripple-carry adder.
+A gate-level Verilog implementation of a **5-bit signed adder** (`AdderSign5bit.v`). The circuit accepts two 5-bit magnitude inputs along with separate sign bits, converts them into two's complement representation using combinational logic, and computes their sum via a 5-stage ripple-carry adder.
 
 ---
 
