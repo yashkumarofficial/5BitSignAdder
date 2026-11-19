@@ -45,7 +45,7 @@ The module is structured into three distinct combinational stages:
 
 ### Option 1: DigitalJS Online (Browser)
 1. Open [DigitalJS Online](https://digitaljs.tilk.eu).
-2. Paste the contents of `SignAdder5bit.v` into the editor and click **Run**.
+2. Paste the contents of `AdderSign5bit.v` into the editor and click **Run**.
 3. Toggle the input switches (`Num1Sign`, `Num1InBit0..4`, etc.) to observe real-time signal propagation.
 
 ### Option 2: Icarus Verilog (CLI)
