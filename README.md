@@ -1,3 +1,5 @@
+> **⚠️ Disclaimer:** The **5x5 multiplier** is currently a work in progress. However, you can still use the 5x5 multipler file right now to test and observe the working of a **4x4 multiplier**.
+
 # 5-Bit Signed Ripple-Carry Adder (Verilog)
 
 A gate-level Verilog implementation of a **5-bit signed adder** (`AdderSign5bit.v`). The circuit accepts two 5-bit magnitude inputs along with separate sign bits, converts them into two's complement representation using combinational logic, and computes their sum via a 5-stage ripple-carry adder.
