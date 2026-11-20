@@ -69,6 +69,10 @@ wire Num1andNum2AdderCarryOutBit3 = (Num1AdderInBit3 & Num2AdderInBit3) | Num1an
 
 assign Num1andNum2AdderOutBit4 = Num1AdderInBit4 ^ Num2AdderInBit4 ^ Num1andNum2AdderCarryOutBit3;
 wire Num1andNum2AdderCarryOutBit4 = (Num1AdderInBit4 & Num2AdderInBit4) | Num1andNum2AdderCarryOutBit3 & (Num1AdderInBit4 ^ Num2AdderInBit4);
-assign Num1andNum2AdderOutBit5 = Num1andNum2AdderCarryOutBit4;
+
+// Sign-extend the 5th bit (MSB) of both 2's complement inputs to a 6th bit,
+// then feed them into a 6th full adder with CarryOutBit4:
+
+assign Num1andNum2AdderOutBit5 = Num1AdderInBit4 ^ Num2AdderInBit4 ^ Num1andNum2AdderCarryOutBit4;
 
 endmodule
