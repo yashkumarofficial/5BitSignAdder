@@ -14,6 +14,57 @@ The module is structured into three distinct combinational stages:
 2. **Input 2 Two's Complement Converter:** Mirrors Stage 1 for `Num2InBit[4:0]` using `Num2Sign`.
 3. **5-Bit Ripple-Carry Adder:** Sums the two converted 5-bit values using one half-adder (`Bit0`) and four cascaded full-adders (`Bit1`–`Bit4`), outputting a 6-bit result (`Bit0`–`Bit5`).
 
+```mermaid
+flowchart LR
+    %% Inputs
+    subgraph Inputs ["Module Inputs"]
+        direction TB
+        N1["Num1InBit0..4<br/>Num1Sign"]
+        N2["Num2InBit0..4<br/>Num2Sign"]
+    end
+
+    %% 2's Complement Conversion
+    subgraph TwosComp ["2's Complement Conversion"]
+        direction TB
+        C1["Num1 Converter<br/>(XOR + Half-Adder Chain: Num1AcBit0..3)"]
+        C2["Num2 Converter<br/>(XOR + Half-Adder Chain: Num2AcBit0..3)"]
+    end
+
+    %% Adder Cluster
+    subgraph AdderCluster ["Ripple-Carry Adder Cluster"]
+        direction TB
+        FA0["1st Adder (Half Adder)<br/>Bit 0"]
+        FA1["2nd Adder (Full Adder)<br/>Bit 1"]
+        FA2["3rd Adder (Full Adder)<br/>Bit 2"]
+        FA3["4th Adder (Full Adder)<br/>Bit 3"]
+        FA4["5th Adder (Full Adder)<br/>Bit 4"]
+
+        FA0 -- "CarryOutBit0" --> FA1
+        FA1 -- "CarryOutBit1" --> FA2
+        FA2 -- "CarryOutBit2" --> FA3
+        FA3 -- "CarryOutBit3" --> FA4
+    end
+
+    %% Outputs
+    subgraph Outputs ["Module Outputs"]
+        direction TB
+        OUT["Num1andNum2AdderOutBit0..5"]
+    end
+
+    %% Wiring
+    N1 --> C1
+    N2 --> C2
+
+    C1 -- "Num1OutBit0..4<br/>(Num1AdderInBit0..4)" --> AdderCluster
+    C2 -- "Num2OutBit0..4<br/>(Num2AdderInBit0..4)" --> AdderCluster
+
+    FA0 -- "OutBit0" --> OUT
+    FA1 -- "OutBit1" --> OUT
+    FA2 -- "OutBit2" --> OUT
+    FA3 -- "OutBit3" --> OUT
+    FA4 -- "OutBit4 & CarryOutBit4 (OutBit5)" --> OUT
+```
+
 ---
 
 ## Port Description
